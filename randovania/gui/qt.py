@@ -100,22 +100,22 @@ async def show_main_window(
 
         return True
 
-    if randovania.is_frozen() and randovania.is_dev_version():
-        try:
-            logger.info("Disabling quit on last window closed")
-            app.setQuitOnLastWindowClosed(False)
-            if not await attempt_login():
-                app.quit()
-                return
-            logger.info("Logged in as %s", network_client.current_user)
+    # if randovania.is_frozen() and randovania.is_dev_version():
+    #     try:
+    #         logger.info("Disabling quit on last window closed")
+    #         app.setQuitOnLastWindowClosed(False)
+    #         if not await attempt_login():
+    #             app.quit()
+    #             return
+    #         logger.info("Logged in as %s", network_client.current_user)
 
-        finally:
+    #     finally:
 
-            def reset_last_window_quit():
-                logger.info("Re-enabling quit on last window closed")
-                app.setQuitOnLastWindowClosed(True)
+    #         def reset_last_window_quit():
+    #             logger.info("Re-enabling quit on last window closed")
+    #             app.setQuitOnLastWindowClosed(True)
 
-            QtCore.QTimer.singleShot(1000, reset_last_window_quit)
+    #         QtCore.QTimer.singleShot(1000, reset_last_window_quit)
 
     from randovania.gui.main_window import MainWindow
 
